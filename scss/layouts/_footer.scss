@@ -1,0 +1,14 @@
+.footer {
+    background-color: #41250F;
+    width: 100%;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+
+    &__nav {
+        display: flex;
+        flex: content;
+        flex-grow: 1;
+            }
+}
+

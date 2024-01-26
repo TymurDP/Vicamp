@@ -1,0 +1,64 @@
+    @keyframes spin {     
+        to {
+            transform: rotate(1turn);
+        }
+
+    }
+
+
+.why {
+    padding-top: 96px;
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__reasons {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    &__reason {
+        display: flex;
+        width: 500px;
+        height: 60px;
+        border-radius: 15px;
+        border: 1px solid #524034;
+        background-color: var(--white-color);
+    }
+
+    &__reason:nth-child(2n) {
+        margin-left: 60px;
+    }
+
+
+    &__number {
+        display: flex;
+        background-image: url('../images/why.png');
+        background-repeat: no-repeat;
+        width: 72px;
+        font-size: 18px;
+        font-weight: 600;
+        text-indent: 24px;
+        align-items: center;
+    }
+
+    &__image {
+        display: flex;
+        margin: auto;
+        animation: spin 24s infinite linear;
+    }
+
+    &__image:hover {
+        animation: none;
+    }
+
+    &__text {
+        margin-top: 18px;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.5;
+    }
+}

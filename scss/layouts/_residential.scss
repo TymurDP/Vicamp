@@ -1,0 +1,53 @@
+.residential {
+    margin-top: 96px;
+
+    &__wrapper {
+        display: flex;
+        gap: 80px;
+        justify-content: space-between;
+    }
+
+    &__text {
+        width: 400px;
+    }
+
+    &__slider-wrapper {
+        display: flex;
+        gap: 32px;
+        justify-content: center; 
+        align-items: center;
+    }
+
+    &__items {
+        display: grid;
+        grid-template-columns: repeat(4, 150px);
+        gap: 16px;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__item-title {
+        text-align: center;
+    }
+
+    &__icon {
+        align-self: center;
+        fill: aqua;
+    }
+
+    &__button {
+        margin-top: 32px;
+        padding: 8px 16px;
+        align-items: center;
+        gap: 8px;
+        border-radius: 16px;
+        background: var(--green-color);
+        color: var(--yellow-color);
+        font-size: 18px;
+    }
+
+}
