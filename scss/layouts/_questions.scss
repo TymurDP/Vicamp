@@ -1,0 +1,65 @@
+.questions {
+    margin-top: 96px;
+
+    &__wrapper {
+        display: flex;
+        gap: 32px;
+
+    }
+
+    &__items {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    &__item {
+        height: 60px;
+        width: 500px;
+        display: flex;
+        background-color: var(--white-color);
+        border-radius: 15px;
+        border: 1px solid #524034;
+        justify-content: space-between;
+    }
+
+    &__item:nth-child(2n) {
+        margin-left: 60px;
+    }
+
+    &__item-title {
+        display: flex;
+        margin-top: 18px;
+        margin-left: 18px;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.5;
+    }
+
+    &__item-image {
+        width: 40px;
+        height: 40px;
+        margin: 8px 18px;
+
+    }
+
+    &__image {
+    display: flex;
+    margin: auto;
+    animation-delay: 3s;
+    animation: unspin 24s infinite linear;
+    }
+
+    &__image:hover {
+        animation: none;
+    }
+
+}
+
+
+    @keyframes unspin {
+        to {
+            transform: rotate(-360deg);
+        }
+
+    }

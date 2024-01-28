@@ -1,45 +1,68 @@
-let resLen = document.getElementsByClassName("residential__item").length;
-let comLen = document.getElementsByClassName("commersial__item").length;
+let resSlide = document.getElementsByClassName("residential__item");
+let resButtonLeft = document.getElementById("rbl");
+let resButtonRight = document.getElementById("rbr");
 
-let resServ = 0;
+let comSlide = document.getElementsByClassName("commercial__item");
+let comButtonLeft = document.getElementById("cbl");
+let comButtonRight = document.getElementById("cbr");
 
-document.getElementById("rbl").style.opacity = '0.2';
-document.getElementById("rbl").style.cursor = 'not-allowed';
+let disable = 'opacity: 0.2;cursor: not-allowed;';
+let visible = 'opacity: 1;cursor: pointer';
 
-if (resServ > resLen) {
-    document.getElementById("rbr").style.display = 'none';
-    console.log("NONE");
-} else {
-    document.getElementById("rbr").style.display = 'flex';
-}
-    
+
+let slideClick = 0;
+let k = 0;
+
+let slideClickCom = 0;
+let kCom = 0;
+
+let transTranslate = 130;
+resButtonLeft.style = disable;
+comButtonLeft.style = disable;
 
 document.getElementById("rbl").onclick = function () {
-    if (resServ > 0) {
-        console.log(resServ);
-        resServ--;
-
-    } else {
-        document.getElementById("rbl").style.opacity = '0.2';
-        document.getElementById("rbl").style.cursor = 'not-allowed';
-        console.log(resServ);
-    }
-
-}
+    if (slideClick < 0) {
+        slideClick++;
+        k = slideClick * transTranslate;
+        for (let i = 0; i < resSlide.length; i++) {resSlide[i].style = 'transform: translate(' + k + 'px);';}
+        resButtonRight.style = visible;
+        if (slideClick === 0) { resButtonLeft.style = disable;}
+    } else { resButtonLeft.style = disable;}
+} 
     
 document.getElementById("rbr").onclick = function () {
-    resServ++;
-    console.log(resServ);
-    if (resServ > 0) {
-    document.getElementById("rbl").style.opacity = '1';
-    document.getElementById("rbl").style.cursor = 'pointer';
+    if (slideClick > -3) {
+        slideClick--;
+        k = slideClick * transTranslate;
+        for (let i = 0; i < resSlide.length; i++) {resSlide[i].style = 'transform: translate(' + k + 'px);';}
+        resButtonLeft.style = visible;
+        if (slideClick === -3) {resButtonRight.style = disable;}
+    } else {resButtonRight.style = disable;}
+}
+
+document.getElementById("cbl").onclick = function () {
+    if (slideClickCom < 0) {
+        slideClickCom++;
+        kCom = slideClickCom * transTranslate;
+        console.log(kCom);
+        for (let i = 0; i < comSlide.length; i++) {comSlide[i].style = 'transform: translate(' + kCom + 'px);';}
+        comButtonRight.style = visible;
+        if (slideClickCom === 0) { comButtonLeft.style = disable;}
+    } else { comButtonLeft.style = disable;}
 } 
-} 
+    
+document.getElementById("cbr").onclick = function () {
+    if (slideClickCom > -2) {
+        slideClickCom--;
+        kCom = slideClickCom * transTranslate;
+        for (let i = 0; i < comSlide.length; i++) {comSlide[i].style = 'transform: translate(' + kCom + 'px);';}
+        comButtonLeft.style = visible;
+        if (slideClickCom === -2) {comButtonRight.style = disable;}
+    } else {comButtonRight.style = disable;}
+}
 
-console.log(resLen);
+document.getElementById("dropButton").onclick = function () {
+    // let questionID = 1;
+    console.log('Click');
+}
 
-
-// let residential = document.getElementsByClassName("residential__item");
-// for (let i = 0; i < residential.length; i++) {
-//     residential[1].style.display = 'none';
-// }
