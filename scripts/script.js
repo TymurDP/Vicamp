@@ -20,6 +20,10 @@ let transTranslate = 130;
 resButtonLeft.style = disable;
 comButtonLeft.style = disable;
 
+let dropButton = document.getElementsByClassName("dropButton");
+let dropText = document.getElementsByClassName("dropText");
+
+
 document.getElementById("rbl").onclick = function () {
     if (slideClick < 0) {
         slideClick++;
@@ -61,8 +65,17 @@ document.getElementById("cbr").onclick = function () {
     } else {comButtonRight.style = disable;}
 }
 
-document.getElementById("dropButton").onclick = function () {
-    // let questionID = 1;
-    console.log('Click');
-}
+for (let i = 0; i < dropButton.length; i++) {
+    dropText[i].style.display = 'none';
+    dropButton[i].onclick = function () {
+        if (dropText[i].style.display == 'none') {
+            dropText[i].style.display = 'block';
+            dropButton[i].style = 'transform: rotate(180deg);transition: 0.3s;';
+        } else {
+            dropText[i].style.display = 'none';
+            dropButton[i].style = 'transform: rotate(0deg);transition: 0.3s;';
+    }
+    
+    }
 
+}
