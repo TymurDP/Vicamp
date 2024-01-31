@@ -1,5 +1,5 @@
 .contact-us {
-  padding-top: 96px;
+  padding-top: 48px;
 
   &__map {
     flex-shrink: 0;
@@ -19,7 +19,6 @@
     display: flex;
     flex-direction: column;
     width: 580px;
-    font-size: 18px;
     font-weight: 500;
     gap: 24px;
   }
@@ -31,6 +30,16 @@
   }
 
   &__phone a {
+    color: var(--green-color);
+  }
+
+  &__email {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--green-color);
+  }
+
+  &__email a {
     color: var(--green-color);
   }
 }

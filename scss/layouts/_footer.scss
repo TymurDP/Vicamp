@@ -1,14 +1,47 @@
 .footer {
-    background-color: #41250F;
-    width: 100%;
-    height: 140px;
-    display: flex;
-    justify-content: center;
+  background-color: #41250f;
+  width: 100%;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    &__nav {
-        display: flex;
-        flex: content;
-        flex-grow: 1;
-    }
+  &__nav {
+    display: flex;
+    flex: content;
+    justify-content: space-between;
+  }
+
+  &__menu {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    justify-content: flex-end;
+    font-weight: 500;
+    align-items: center;
+    color: var(--white-color);
+    text-align: center;
+  }
+
+  &__menu a {
+    text-decoration: none;
+    color: var(--white-color);
+  }
+
+  &__phone {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    color: var(--yellow-color);
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__phone a {
+    color: var(--yellow-color);
+    text-decoration: none;
+  }
 }
 
+.sert {
+  color: #f5f5f5;
+}

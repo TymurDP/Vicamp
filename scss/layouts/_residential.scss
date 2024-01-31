@@ -1,59 +1,57 @@
 .residential {
-    margin-top: 96px;
+  padding-top: 96px;
 
-    &__wrapper {
-        display: flex;
-        gap: 80px;
-        justify-content: space-between;
-    }
+  &__wrapper {
+    display: flex;
+    gap: 80px;
+    justify-content: space-between;
+  }
 
-    &__text {
-        width: 400px;
-    }
+  &__text {
+    width: 400px;
+  }
 
-    &__slider-wrapper {
-        display: flex;
-        gap: 32px;
-        justify-content: center; 
-        align-items: center;
-    }
+  &__slider-wrapper {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+  }
 
-    &__items {
-        display: flex;
-        gap: 24px;
-        width: 580px;
-        overflow: hidden;
-    }
+  &__items {
+    display: flex;
+    gap: 24px;
+    width: 580px;
+    overflow: hidden;
+  }
 
-    &__item {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        min-width: 120px;
-        transform: translate(0px);
-        transition: 1.5s;
-        
-    }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 120px;
+    transform: translate(0px);
+    transition: 1.5s;
+  }
 
-    &__item-title {
-        text-align: center;
-        font-weight: 500;
-    }
+  &__item-title {
+    text-align: center;
+    font-weight: 500;
+  }
 
-    &__icon {
-        align-self: center;
-    }
+  &__icon {
+    align-self: center;
+  }
 
-    &__button {
-        display: flex;
-        margin: 32px auto;
-        padding: 16px 32px;
-        align-items: center;
-        gap: 8px;
-        border-radius: 24px;
-        background: var(--green-color);
-        color: var(--yellow-color);
-        font-size: 18px;
-    }
-
+  &__button {
+    display: flex;
+    margin: 32px auto;
+    padding: 16px 32px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 24px;
+    background: var(--green-color);
+    color: var(--yellow-color);
+    font-size: 18px;
+  }
 }
