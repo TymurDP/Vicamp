@@ -21,13 +21,13 @@
                         <li>Gallery</li>
                         <li>Contact Us</li>
                     </ul>
-                    <div class="header__phone">
+                    <address class="header__phone">
                         <a href="#">
                             <svg width="15" height="17">
                                 <use href="./images/icon.svg#phone"></use>
                             </svg>
                             647 406 0543</a>
-                    </div>
+                    </address>
                 </nav>
             </div>
         </div>
@@ -94,7 +94,7 @@
                     <div class="residential__slider-wrapper">
                         <button class="slider-button" type="button" id="rbl"><img src="./images/btn.png" alt="button"
                                 width="40" height="40"></button>
-                        <ul class="residential__items">
+                        <ul class="residential__items" id="residential__items">
                             <li class="residential__item">
                                 <svg width="90" height="110" class="residential__icon">
                                     <use href="./images/icon.svg#diagnostic"></use>
@@ -365,12 +365,57 @@
         </section>
         <section class="connact-us">
             <div class="container">
-                <h2 class="contact-us">Contact Us</h2>
 
+                <div class="contact-us__wrapper">
+
+                    <div class="contact-us__text">
+                        <h2 class="contact-us">Contact Us</h2>
+                        Our staff and technicians are very friendly and always willing to address any questions or
+                        concerns you may have. You
+                        can contact us by phone or email at your convenience or book free estimate.
+                        <address class="contact-us__phone">
+                            <a href="#">
+                                <svg width="15" height="17">
+                                    <use href="./images/icon.svg#phone"></use>
+                                </svg>
+                                647 406 0543</a>
+                        </address>
+                        <address class="email">
+                            info@vicamp.net
+                        </address>
+                    </div>
+                    <div class="form">
+                        <p class="form-title">Book free estimate</p>
+                        <form action="" method="get" name="form" autocomplete="off">
+                            <div class="form-inputs">
+                                <div class="form-input">
+                                    <input type="text" name="user-name" id="user-name" placeholder="Your name"
+                                        required />
+                                </div>
+                                <div class="form-input">
+                                    <input type="tel" name="user-tel" id="user-tel" placeholder="Your phone"
+                                        pattern="^\+[0-9]{12}" required />
+                                </div>
+                                <div class="form-input">
+                                    <input type="text" name="user-addres" id="user-addres"
+                                        placeholder="Address (optional)" />
+                                </div>
+                                <div class="form-message">
+                                    <textarea type="textarea" name="user-message" id="user-message" class="form-message"
+                                        placeholder="Type your text here">
+
+                                    </textarea>
+                                </div>
+                                <button class="form-button" type="submit">Book Estimate</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <!-- <iframe class="contact-us__map"
+            <iframe class="contact-us__map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.955846959986!2d-79.59296839999999!3d43.586636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b41beaa3e8aa5%3A0x1d2f82766d35bd35!2sVICAMP%20ELECTRICAL%20SERVICES%20%7C%20Electrician%20Mississauga!5e0!3m2!1sru!2sua!4v1706220782470!5m2!1sru!2sua"
-                loading="lazy"></iframe> -->
+                loading="lazy"></iframe>
         </section>
     </main>
     <footer class="footer">
