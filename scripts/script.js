@@ -91,15 +91,15 @@ for (let i = 0; i < dropButton.length; i++) {
   };
 }
 
-document.addEventListener("touchstart", handleTouchStart, false);
-document.addEventListener("touchmove", handleTouchMove, false);
+// document.addEventListener("touchstart", handleTouchStart, false);
+// document.addEventListener("touchmove", handleTouchMove, false);
 
-let iconTouch = document.querySelector(".residential__item");
+// let iconTouch = document.querySelector(".residential__item");
 
-function handleTouchStart(event) {
-  console.log(event);
-}
+// function handleTouchStart(event) {
+//   console.log(event);
+// }
 
-function handleTouchMove(event) {
-  console.log(event);
-}
+// function handleTouchMove(event) {
+//   console.log(event);
+// }
