@@ -91,12 +91,15 @@ for (let i = 0; i < dropButton.length; i++) {
   };
 }
 
-// function startup() {
-//     el = document.getElementsByClassName("residential__item");
-//     el.addEventListener('touchstart', () => { console.log('start') }); // el.ontouchstart = () => { console.log('start') };
-//     el.addEventListener('touchend', () => { console.log('end') }); // el.ontouchstart = () => { console.log('start') };
-//     el.addEventListener('touchmove', () => { console.log('move') }); // el.ontouchstart = () => { console.log('start') };
-//     el.addEventListener('touchcancel', () => { console.log('cancel') }); // el.ontouchstart = () => { console.log('start') };
-// }
+document.addEventListener("touchstart", handleTouchStart, false);
+document.addEventListener("touchmove", handleTouchMove, false);
 
-// document.addEventListener("DOMContentLoaded", startup);
+let iconTouch = document.querySelector(".residential__item");
+
+function handleTouchStart(event) {
+  console.log(event);
+}
+
+function handleTouchMove(event) {
+  console.log(event);
+}
