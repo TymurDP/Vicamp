@@ -91,15 +91,30 @@ for (let i = 0; i < dropButton.length; i++) {
   };
 }
 
-// document.addEventListener("touchstart", handleTouchStart, false);
-// document.addEventListener("touchmove", handleTouchMove, false);
+let el = document.getElementById("residential");
+let x1 = 0;
+let move = 0;
 
-// let iconTouch = document.querySelector(".residential__item");
+el.addEventListener("touchstart", handleTouchStart, false);
+el.addEventListener("touchmove", handleTouchMove, false);
 
-// function handleTouchStart(event) {
-//   console.log(event);
-// }
+function handleTouchStart(event) {
+  let firstTouch = event.touches[0];
+  x1 = firstTouch.clientX;
+}
 
-// function handleTouchMove(event) {
-//   console.log(event);
-// }
+function handleTouchMove(event) {
+  if (!x1) {
+    return false;
+  }
+  let x2 = event.touches[0].clientX;
+  let xDiff = x2 - x1;
+  if (xDiff / 1.5 > 0) {
+    move = 0;
+  } else if (xDiff < -400) {
+    move = -400;
+  } else move = xDiff / 1.5;
+  for (let i = 0; i < resSlide.length; i++) {
+    resSlide[i].style = "transform: translate(" + move + "px);";
+  }
+}
