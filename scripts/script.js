@@ -118,3 +118,31 @@ function handleTouchMove(event) {
     resSlide[i].style = "transform: translate(" + move + "px);";
   }
 }
+
+let elCom = document.getElementById("commercial");
+let xCom = 0;
+let moveCom = 0;
+
+elCom.addEventListener("touchstart", handleTouchStartCom, false);
+elCom.addEventListener("touchmove", handleTouchMoveCom, false);
+
+function handleTouchStartCom(eventCom) {
+  let firstTouchCom = eventCom.touches[0];
+  x1Com = firstTouchCom.clientX;
+}
+
+function handleTouchMoveCom(eventCom) {
+  if (!x1Com) {
+    return false;
+  }
+  let x2Com = eventCom.touches[0].clientX;
+  let xDiffCom = x2Com - x1Com;
+  if (xDiffCom / 1.5 > 0) {
+    moveCom = 0;
+  } else if (xDiffCom < -400) {
+    moveCom = -400;
+  } else moveCom = xDiffCom / 1.5;
+  for (let i = 0; i < comSlide.length; i++) {
+    comSlide[i].style = "transform: translate(" + moveCom + "px);";
+  }
+}
