@@ -109,11 +109,11 @@ function handleTouchMove(event) {
   }
   let x2 = event.touches[0].clientX;
   let xDiff = x2 - x1;
-  if (xDiff / 1.5 > 0) {
+  if (xDiff > 0) {
     move = 0;
-  } else if (xDiff < -400) {
-    move = -400;
-  } else move = xDiff / 1.5;
+  } else if (xDiff < -580) {
+    move = -580;
+  } else move = xDiff;
   for (let i = 0; i < resSlide.length; i++) {
     resSlide[i].style = "transform: translate(" + move + "px);";
   }
@@ -137,11 +137,11 @@ function handleTouchMoveCom(eventCom) {
   }
   let x2Com = eventCom.touches[0].clientX;
   let xDiffCom = x2Com - x1Com;
-  if (xDiffCom / 1.5 > 0) {
+  if (xDiffCom > 0) {
     moveCom = 0;
-  } else if (xDiffCom < -400) {
-    moveCom = -400;
-  } else moveCom = xDiffCom / 1.5;
+  } else if (xDiffCom < -420) {
+    moveCom = -420;
+  } else moveCom = xDiffCom;
   for (let i = 0; i < comSlide.length; i++) {
     comSlide[i].style = "transform: translate(" + moveCom + "px);";
   }
