@@ -94,6 +94,7 @@ for (let i = 0; i < dropButton.length; i++) {
 let el = document.getElementById("residential__items");
 let x1 = 0;
 let move = 0;
+let moveLimit = 0;
 
 el.addEventListener("touchstart", handleTouchStart, false);
 el.addEventListener("touchmove", handleTouchMove, false);
@@ -107,7 +108,13 @@ function handleTouchMove(event) {
   if (!x1) {
     return false;
   }
-  const moveLimit = (resSlide.length - 2) * -120;
+  if (window.screen.width > 767) {
+    moveLimit = (resSlide.length - 3) * -120;
+  } else if (window.screen.width > 450) {
+    moveLimit = (resSlide.length - 2) * -120;
+  } else {
+    moveLimit = (resSlide.length - 1) * -120;
+  }
   let x2 = event.touches[0].clientX;
   let xDiff = x2 - x1 + move;
   if (xDiff > 0) {
@@ -115,7 +122,7 @@ function handleTouchMove(event) {
   } else if (xDiff < moveLimit) {
     move = moveLimit;
   } else move = xDiff;
-  // console.log(move);
+  console.log(window.screen.width);
   for (let i = 0; i < resSlide.length; i++) {
     resSlide[i].style = "transform: translate(" + move + "px);";
   }
@@ -124,6 +131,7 @@ function handleTouchMove(event) {
 let elCom = document.getElementById("commercial__items");
 let xCom = 0;
 let moveCom = 0;
+let moveComLimit = 0;
 
 elCom.addEventListener("touchstart", handleTouchStartCom, false);
 elCom.addEventListener("touchmove", handleTouchMoveCom, false);
@@ -137,12 +145,18 @@ function handleTouchMoveCom(eventCom) {
   if (!x1Com) {
     return false;
   }
+  if (window.screen.width > 420) {
+    moveComLimit = (comSlide.length - 2) * -120;
+  } else {
+    moveComLimit = (comSlide.length - 1) * -120;
+  }
+
   let x2Com = eventCom.touches[0].clientX;
   let xDiffCom = x2Com - x1Com + moveCom;
   if (xDiffCom > 0) {
     moveCom = 0;
-  } else if (xDiffCom < -420) {
-    moveCom = -420;
+  } else if (xDiffCom < moveComLimit) {
+    moveCom = moveComLimit;
   } else moveCom = xDiffCom;
   for (let i = 0; i < comSlide.length; i++) {
     comSlide[i].style = "transform: translate(" + moveCom + "px);";
