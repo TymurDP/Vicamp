@@ -91,7 +91,7 @@ for (let i = 0; i < dropButton.length; i++) {
   };
 }
 
-let el = document.getElementById("residential");
+let el = document.getElementById("residential__items");
 let x1 = 0;
 let move = 0;
 
@@ -109,20 +109,19 @@ function handleTouchMove(event) {
   }
   const moveLimit = (resSlide.length - 2) * -120;
   let x2 = event.touches[0].clientX;
-  let xDiff = x2 - x1;
+  let xDiff = x2 - x1 + move;
   if (xDiff > 0) {
     move = 0;
   } else if (xDiff < moveLimit) {
     move = moveLimit;
   } else move = xDiff;
-  console.log(move);
+  // console.log(move);
   for (let i = 0; i < resSlide.length; i++) {
     resSlide[i].style = "transform: translate(" + move + "px);";
   }
-  move = 0;
 }
 
-let elCom = document.getElementById("commercial");
+let elCom = document.getElementById("commercial__items");
 let xCom = 0;
 let moveCom = 0;
 
@@ -139,7 +138,7 @@ function handleTouchMoveCom(eventCom) {
     return false;
   }
   let x2Com = eventCom.touches[0].clientX;
-  let xDiffCom = x2Com - x1Com;
+  let xDiffCom = x2Com - x1Com + moveCom;
   if (xDiffCom > 0) {
     moveCom = 0;
   } else if (xDiffCom < -420) {
