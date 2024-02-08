@@ -115,9 +115,11 @@ function handleTouchMove(event) {
   } else if (xDiff < moveLimit) {
     move = moveLimit;
   } else move = xDiff;
+  console.log(move);
   for (let i = 0; i < resSlide.length; i++) {
     resSlide[i].style = "transform: translate(" + move + "px);";
   }
+  move = 0;
 }
 
 let elCom = document.getElementById("commercial");
