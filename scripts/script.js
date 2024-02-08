@@ -101,23 +101,26 @@ el.addEventListener("touchmove", handleTouchMove, false);
 function handleTouchStart(event) {
   let firstTouch = event.touches[0];
   x1 = firstTouch.clientX;
+  console.log(x1);
 }
 
 function handleTouchMove(event) {
   if (!x1) {
     return false;
   }
+  const moveLimit = (resSlide.length - 2) * -120;
   let x2 = event.touches[0].clientX;
   let xDiff = x2 - x1;
   if (xDiff > 0) {
     move = 0;
-  } else if (xDiff < -520) {
-    move = -520;
+  } else if (xDiff < moveLimit) {
+    move = moveLimit;
   } else move = xDiff;
   for (let i = 0; i < resSlide.length; i++) {
     resSlide[i].style = "transform: translate(" + move + "px);";
   }
 }
+console.log(move, x1);
 
 let elCom = document.getElementById("commercial");
 let xCom = 0;
@@ -144,6 +147,5 @@ function handleTouchMoveCom(eventCom) {
   } else moveCom = xDiffCom;
   for (let i = 0; i < comSlide.length; i++) {
     comSlide[i].style = "transform: translate(" + moveCom + "px);";
-    console.log(moveCom);
   }
 }
