@@ -95,6 +95,10 @@ let el = document.getElementById("residential__items");
 let x1 = 0;
 let move = 0;
 let moveLimit = 0;
+let resPaginationCurrent = 0;
+let resPaginationPrev = 0;
+let resPaginationColored = document.querySelectorAll(".residential__circle");
+resPaginationColored[resPaginationCurrent].classList.add("fill");
 
 el.addEventListener("touchstart", handleTouchStart, false);
 el.addEventListener("touchmove", handleTouchMove, false);
@@ -122,11 +126,19 @@ function handleTouchMove(event) {
   } else if (xDiff < moveLimit) {
     move = moveLimit;
   } else move = xDiff;
-  console.log(window.screen.width);
+  resPagination = Math.round(xDiff / 120);
+  resPaginationCurrent = resPaginationPrev - resPagination;
+
+  resPaginationColored[resPaginationCurrent].classList.add("fill");
   for (let i = 0; i < resSlide.length; i++) {
     resSlide[i].style = "transform: translate(" + move + "px);";
+    if (resPaginationColored[i].classList.contains("fill")) {
+      resPaginationColored[i].classList.remove("fill");
+    }
+    resPaginationColored[resPaginationCurrent].classList.add("fill");
   }
 }
+resPaginationPrev = resPaginationCurrent;
 
 let elCom = document.getElementById("commercial__items");
 let xCom = 0;
