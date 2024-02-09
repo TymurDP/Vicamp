@@ -119,7 +119,7 @@ function handleTouchMove(event) {
   } else {
     moveLimit = (resSlide.length - 1) * -120;
   }
-  let x2 = event.touches[0].clientX;
+  let x2 = event.touches[0].clientX / 2;
   let xDiff = x2 - x1 + move;
   if (xDiff > 0) {
     move = 0;
