@@ -58,7 +58,7 @@
             <ul class="menu__nav">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#residential">Services</a></li>
-                <li><a href="#">Gallery</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="#">Testimonials</a></li>
                 <li><a href="#questions">FAQ</a></li>
                 <li><a href="#contact-us">Contacts</a></li>
@@ -477,7 +477,7 @@
                     </div>
                     <div class="form" id="contact-form">
                         <p class="form-title">Book free estimate</p>
-                        <form action="" method="get" name="form" autocomplete="off">
+                        <form action="post.php" method="post" name="form" autocomplete="off">
                             <div class="form-inputs">
                                 <div class="form-input">
                                     <input type="text" name="user-name" id="user-name" placeholder="Your name"
@@ -485,7 +485,7 @@
                                 </div>
                                 <div class="form-input">
                                     <input type="tel" name="user-tel" id="user-tel" placeholder="Your phone"
-                                        pattern="^\+[0-9]{12}" required />
+                                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" title="+1" />
                                 </div>
                                 <div class="form-input">
                                     <input type="text" name="user-addres" id="user-addres"

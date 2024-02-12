@@ -113,7 +113,7 @@ function handleTouchMove(event) {
     return false;
   }
   if (window.screen.width > 767) {
-    moveLimit = (resSlide.length - 3) * -120;
+    moveLimit = (resSlide.length - 4) * -120;
   } else if (window.screen.width > 450) {
     moveLimit = (resSlide.length - 2) * -120;
   } else {
@@ -121,15 +121,17 @@ function handleTouchMove(event) {
   }
   let x2 = event.touches[0].clientX;
   let xDiff = x2 - x1 + move;
-
   if (xDiff > 0) {
     move = 0;
+    xDiff = 0;
   } else if (xDiff < moveLimit) {
     move = moveLimit;
-  } else move = xDiff;
+    xDiff = (resSlide.length - 1) * -120;
+  } else {
+    move = xDiff;
+  }
   resPagination = Math.round(xDiff / 120);
   resPaginationCurrent = resPaginationPrev - resPagination;
-
   resPaginationColored[resPaginationCurrent].classList.add("fill");
   for (let i = 0; i < resSlide.length; i++) {
     resSlide[i].style = "transform: translate(" + move + "px);";
