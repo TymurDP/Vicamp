@@ -35,7 +35,14 @@
     enableDrag: true,
     freeMove: true,
     swipeThreshold: 40,
-    responsive: [],
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          thumbItem: 5,
+        },
+      },
+    ],
     /* jshint ignore:start */
     onBeforeStart: function ($el) {},
     onSliderLoad: function ($el) {},
