@@ -51,6 +51,8 @@ function handleTouchMoveSwipe(eventSwipe) {
 }
 function swipeEnd(eventSwipe) {
   moveSlide(rotation);
+  xDiffSwipe = null;
+  rotation = null;
 }
 
 if (window.innerWidth > 1281) {
