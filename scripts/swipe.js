@@ -91,14 +91,18 @@ function moveSlide(rotation) {
 
 let review = document.querySelectorAll("#closeReview");
 let readSpan = document.querySelectorAll("#revSpan");
+let more = document.querySelectorAll("#more");
 for (let i = 0; i < review.length; i++) {
   review[i].onclick = () => {
     if (readSpan[i].classList == "hidden") {
       readSpan[i].classList.remove("hidden");
+      more[i].style.display = "none";
       review[i].style.height = "auto";
     } else {
+      more[i].style.display = "block";
       readSpan[i].classList.add("hidden");
       review[i].style.height = "500px";
     }
   };
 }
+console.log(more.length);
