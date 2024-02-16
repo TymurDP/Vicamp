@@ -101,8 +101,7 @@ for (let i = 0; i < review.length; i++) {
     } else {
       more[i].style.display = "block";
       readSpan[i].classList.add("hidden");
-      review[i].style.height = "500px";
+      review[i].style.height = "520px";
     }
   };
 }
-console.log(more.length);
