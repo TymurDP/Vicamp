@@ -4,8 +4,8 @@ let countMove = 0;
 let rotation = 0;
 gap = 24;
 const widthItem = item[0].offsetWidth + gap;
-let newX2 = 0;
-let newX1 = item[0].style.transform;
+let fillCircle = 0;
+let circles = document.querySelectorAll(".testimonials__circle");
 
 prevBtn = document.getElementById("prevBtn");
 prevBtn.onclick = () => {
@@ -53,13 +53,12 @@ function swipeEnd(eventSwipe) {
   moveSlide(rotation);
 }
 
-console.log(rotation);
 if (window.innerWidth > 1281) {
   adapt = 3;
 } else if (window.innerWidth <= 1280) {
-  adapt = 2;
-} else if (window.innerWidth < 768) {
   adapt = 1;
+} else if (window.innerWidth < 768) {
+  adapt = 0;
 }
 const maxMove = -(item.length - adapt) * widthItem;
 
@@ -81,6 +80,11 @@ function moveSlide(rotation) {
     prevBtn.style = disable;
     countMove < 0 ? (prevBtn.style = visible) : (prevBtn.style = disable);
   }
+  fillCircle = -countMove / widthItem;
+  circles.forEach((element) => {
+    element.classList.remove("filled");
+  });
+  circles[fillCircle].classList.add("filled");
 }
 
 let review = document.querySelectorAll("#closeReview");
