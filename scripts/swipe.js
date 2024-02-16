@@ -4,6 +4,8 @@ let countMove = 0;
 let rotation = 0;
 gap = 24;
 const widthItem = item[0].offsetWidth + gap;
+let newX2 = 0;
+let newX1 = item[0].style.transform;
 
 prevBtn = document.getElementById("prevBtn");
 prevBtn.onclick = () => {
@@ -25,6 +27,7 @@ nextBtn.onclick = () => {
 
 items.addEventListener("touchstart", handleTouchStartSwipe, false);
 items.addEventListener("touchmove", handleTouchMoveSwipe, false);
+items.addEventListener("touchend", swipeEnd);
 
 function handleTouchStartSwipe(eventSwipe) {
   let firstTouchSwipe = eventSwipe.touches[0];
@@ -35,29 +38,30 @@ function handleTouchMoveSwipe(eventSwipe) {
   if (!x1Swipe) {
     return false;
   }
-
   let x2Swipe = eventSwipe.touches[0].clientX;
   let xDiffSwipe = x2Swipe - x1Swipe;
-  if (Math.abs(xDiffSwipe) > 10) {
-    firstRun = true;
+  if (Math.abs(xDiffSwipe) > 50) {
     if (xDiffSwipe > 0) {
       rotation = "prev";
     } else {
       rotation = "next";
     }
-    moveSlide(rotation);
+    swipeEnd;
   }
 }
+function swipeEnd(eventSwipe) {
+  moveSlide(rotation);
+}
 
+console.log(rotation);
 if (window.innerWidth > 1281) {
   adapt = 3;
 } else if (window.innerWidth <= 1280) {
-  adapt = 1;
+  adapt = 2;
 } else if (window.innerWidth < 768) {
   adapt = 1;
 }
 const maxMove = -(item.length - adapt) * widthItem;
-console.log(window.innerWidth, maxMove, item.length);
 
 function moveSlide(rotation) {
   if (rotation == "prev" && countMove < 0) {
