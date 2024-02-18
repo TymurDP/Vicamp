@@ -58,12 +58,11 @@ function swipeEnd(eventSwipe) {
 if (window.innerWidth > 1281) {
   adapt = 3;
 } else if (window.innerWidth <= 1280) {
-  adapt = 1;
+  adapt = 2;
 } else if (window.innerWidth < 768) {
-  adapt = 0;
+  adapt = 1;
 }
 const maxMove = -(item.length - adapt) * widthItem;
-
 function moveSlide(rotation) {
   if (rotation == "prev" && countMove < 0) {
     countMove += widthItem;

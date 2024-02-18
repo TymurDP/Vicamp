@@ -23,31 +23,11 @@ let dropButton = document.querySelectorAll(".dropButton");
 let dropText = document.querySelectorAll(".dropText");
 
 resButtonLeft.onclick = () => {
-  if (slideClick < 0) {
-    slideClick++;
-    k = slideClick * transTranslate;
-    for (let i = 0; i < resSlide.length; i++) {
-      resSlide[i].style = "transform: translate(" + k + "px);";
-    }
-    resButtonRight.style = visible;
-    slideClick === 0
-      ? (resButtonLeft.style = disable)
-      : (resButtonLeft.style = visible);
-  }
+  moveResidential("right");
 };
 
 resButtonRight.onclick = () => {
-  if (slideClick > -3) {
-    slideClick--;
-    k = slideClick * transTranslate;
-    for (let i = 0; i < resSlide.length; i++) {
-      resSlide[i].style = "transform: translate(" + k + "px);";
-    }
-    resButtonLeft.style = visible;
-    slideClick === -3
-      ? (resButtonRight.style = disable)
-      : (resButtonRight.style = visible);
-  }
+  moveResidential("left");
 };
 
 comButtonLeft.onclick = () => {
@@ -95,13 +75,18 @@ let el = document.getElementById("residential__items");
 let x1 = 0;
 let move = 0;
 let moveLimit = 0;
+let direction = 0;
+
 let resPaginationCurrent = 0;
-let resPaginationPrev = 0;
 let resPaginationColored = document.querySelectorAll(".residential__circle");
-resPaginationColored[resPaginationCurrent].classList.add("fill");
+
+let comPaginationCurrent = 0;
+let comPaginationPrev = 0;
+let comPaginationColored = document.querySelectorAll(".commercial__circle");
 
 el.addEventListener("touchstart", handleTouchStart, false);
 el.addEventListener("touchmove", handleTouchMove, false);
+el.addEventListener("touchend", handleTouchEnd, false);
 
 function handleTouchStart(event) {
   let firstTouch = event.touches[0];
@@ -114,34 +99,72 @@ function handleTouchMove(event) {
   }
   if (window.screen.width > 767) {
     moveLimit = (resSlide.length - 4) * -120;
-  } else if (window.screen.width > 450) {
-    moveLimit = (resSlide.length - 2) * -120;
+  } else if (window.screen.width < 450) {
+    moveLimit = (resSlide.length - 3) * -120;
   } else {
     moveLimit = (resSlide.length - 1) * -120;
   }
   let x2 = event.touches[0].clientX;
-  let xDiff = x2 - x1 + move;
-  if (xDiff > 0) {
-    move = 0;
-    xDiff = 0;
-  } else if (xDiff < moveLimit) {
-    move = moveLimit;
-    xDiff = (resSlide.length - 1) * -120;
-  } else {
-    move = xDiff;
-  }
-  resPagination = Math.round(xDiff / 120);
-  resPaginationCurrent = resPaginationPrev - resPagination;
-  resPaginationColored[resPaginationCurrent].classList.add("fill");
-  for (let i = 0; i < resSlide.length; i++) {
-    resSlide[i].style = "transform: translate(" + move + "px);";
-    if (resPaginationColored[i].classList.contains("fill")) {
-      resPaginationColored[i].classList.remove("fill");
+  let xDiff = x2 - x1;
+
+  if (Math.abs(xDiff) > 20) {
+    if (xDiff > 0) {
+      direction = "right";
+    } else if (xDiff < 0) {
+      direction = "left";
     }
-    resPaginationColored[resPaginationCurrent].classList.add("fill");
+    handleTouchEnd;
   }
 }
-resPaginationPrev = resPaginationCurrent;
+
+function handleTouchEnd(event) {
+  moveResidential(direction);
+  xDiff = null;
+  direction = null;
+}
+let moveCalc = 140;
+let countMoveRes = 0;
+let maxMoveRes = 0;
+let resPag = 0;
+if (window.innerWidth > 650) {
+  maxMoveRes = 3 * moveCalc;
+  // resPag = 3;
+} else if (window.innerWidth < 650) {
+  maxMoveRes = 4 * moveCalc;
+  // resPag = 2;
+} else if (window.innerWidth < 300) {
+  maxMoveRes = 5 * moveCalc;
+  // resPag = 1;
+}
+
+// resPaginationCurrent = resPag;
+resPaginationColored[resPaginationCurrent].classList.add("filled");
+
+function moveResidential(direction) {
+  if (direction == "left" && countMoveRes > -maxMoveRes) {
+    countMoveRes -= moveCalc;
+    resButtonLeft.style = visible;
+    countMoveRes === -maxMoveRes
+      ? (resButtonRight.style = disable)
+      : (resButtonRight.style = visible);
+  } else if (direction == "right" && countMoveRes < 0) {
+    countMoveRes += moveCalc;
+    resButtonRight.style = visible;
+    countMoveRes === 0
+      ? (resButtonLeft.style = disable)
+      : (resButtonLeft.style = visible);
+  }
+  for (let i = 0; i < resSlide.length; i++) {
+    resSlide[i].style.transform = "translateX(" + countMoveRes + "px)";
+    resSlide[i].style.transition = "0.5s";
+  }
+  console.log(countMoveRes);
+  resPaginationCurrent = -countMoveRes / moveCalc + resPag;
+  resPaginationColored.forEach((element) => {
+    element.classList.remove("filled");
+  });
+  resPaginationColored[resPaginationCurrent].classList.add("filled");
+}
 
 let elCom = document.getElementById("commercial__items");
 let xCom = 0;
@@ -173,7 +196,16 @@ function handleTouchMoveCom(eventCom) {
   } else if (xDiffCom < moveComLimit) {
     moveCom = moveComLimit;
   } else moveCom = xDiffCom;
+  let comPagination = Math.round(xDiffCom / 120);
+  comPaginationCurrent = comPaginationPrev - comPagination;
+  comPaginationColored[comPaginationCurrent].classList.add("fill");
+
   for (let i = 0; i < comSlide.length; i++) {
     comSlide[i].style = "transform: translate(" + moveCom + "px);";
+    if (comPaginationColored[i].classList.contains("fill")) {
+      comPaginationColored[i].classList.remove("fill");
+    }
+    comPaginationColored[comPaginationCurrent].classList.add("fill");
   }
 }
+comPaginationPrev = comPaginationCurrent;
