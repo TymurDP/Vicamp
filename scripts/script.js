@@ -128,13 +128,14 @@ let maxMoveRes = 0;
 let resPag = 0;
 if (window.innerWidth > 650) {
   maxMoveRes = 3 * moveCalc;
-  // resPag = 3;
+  resPaginationColored[4].style.display = "none";
+  resPaginationColored[5].style.display = "none";
 } else if (window.innerWidth < 650) {
   maxMoveRes = 4 * moveCalc;
-  // resPag = 2;
-} else if (window.innerWidth < 300) {
+  resPaginationColored[5].style.display = "none";
+} else if (window.innerWidth < 492) {
   maxMoveRes = 5 * moveCalc;
-  // resPag = 1;
+  console.log(maxMoveRes);
 }
 
 // resPaginationCurrent = resPag;
