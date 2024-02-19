@@ -130,15 +130,13 @@ if (window.innerWidth > 650) {
   maxMoveRes = 3 * moveCalc;
   resPaginationColored[4].style.display = "none";
   resPaginationColored[5].style.display = "none";
-} else if (window.innerWidth < 650) {
+} else if (window.innerWidth < 650 && window.innerWidth > 493) {
   maxMoveRes = 4 * moveCalc;
   resPaginationColored[5].style.display = "none";
-} else if (window.innerWidth < 492) {
+} else {
   maxMoveRes = 5 * moveCalc;
-  console.log(maxMoveRes);
 }
 
-// resPaginationCurrent = resPag;
 resPaginationColored[resPaginationCurrent].classList.add("filled");
 
 function moveResidential(direction) {
@@ -159,12 +157,12 @@ function moveResidential(direction) {
     resSlide[i].style.transform = "translateX(" + countMoveRes + "px)";
     resSlide[i].style.transition = "0.5s";
   }
-  console.log(countMoveRes);
   resPaginationCurrent = -countMoveRes / moveCalc + resPag;
   resPaginationColored.forEach((element) => {
     element.classList.remove("filled");
   });
   resPaginationColored[resPaginationCurrent].classList.add("filled");
+  console.log(resPaginationCurrent);
 }
 
 let elCom = document.getElementById("commercial__items");
