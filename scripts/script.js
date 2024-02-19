@@ -75,13 +75,6 @@ function handleTouchMove(event) {
   if (!x1) {
     return false;
   }
-  if (window.screen.width > 767) {
-    moveLimit = (resSlide.length - 4) * -120;
-  } else if (window.screen.width < 450) {
-    moveLimit = (resSlide.length - 3) * -120;
-  } else {
-    moveLimit = (resSlide.length - 1) * -120;
-  }
   let x2 = event.touches[0].clientX;
   let xDiff = x2 - x1;
 
@@ -154,13 +147,6 @@ function handleTouchMoveCom(eventCom) {
   if (!x1Com) {
     return false;
   }
-  if (window.screen.width > 767) {
-    moveComLimit = (comSlide.length - 4) * -120;
-  } else if (window.screen.width < 450) {
-    moveComLimit = (comSlide.length - 3) * -120;
-  } else {
-    moveComLimit = (comSlide.length - 1) * -120;
-  }
   let x2Com = eventCom.touches[0].clientX;
   let xDiffCom = x2Com - x1Com;
   if (Math.abs(xDiffCom) > 20) {
@@ -183,7 +169,6 @@ let countMoveCom = 0;
 let maxMoveCom = 0;
 if (window.innerWidth > 650) {
   maxMoveCom = 2 * moveCalcCom;
-  console.log(maxMoveCom);
   comPaginationColored[3].style.display = "none";
   comPaginationColored[4].style.display = "none";
 } else if (window.innerWidth < 650 && window.innerWidth > 493) {
