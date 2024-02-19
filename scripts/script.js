@@ -9,13 +9,6 @@ let comButtonRight = document.querySelector("#cbr");
 let disable = "opacity: 0.2;cursor: not-allowed;";
 let visible = "opacity: 1;cursor: pointer";
 
-let slideClick = 0;
-let k = 0;
-
-let slideClickCom = 0;
-let kCom = 0;
-
-let transTranslate = 135;
 resButtonLeft.style = disable;
 comButtonLeft.style = disable;
 
@@ -31,31 +24,11 @@ resButtonRight.onclick = () => {
 };
 
 comButtonLeft.onclick = () => {
-  if (slideClickCom < 0) {
-    slideClickCom++;
-    kCom = slideClickCom * transTranslate;
-    for (let i = 0; i < comSlide.length; i++) {
-      comSlide[i].style = "transform: translate(" + kCom + "px);";
-    }
-    comButtonRight.style = visible;
-    slideClickCom === 0
-      ? (comButtonLeft.style = disable)
-      : (comButtonLeft.style = visible);
-  }
+  moveCommercial("rightCom");
 };
 
 comButtonRight.onclick = () => {
-  if (slideClickCom > -2) {
-    slideClickCom--;
-    kCom = slideClickCom * transTranslate;
-    for (let i = 0; i < comSlide.length; i++) {
-      comSlide[i].style = "transform: translate(" + kCom + "px);";
-    }
-    comButtonLeft.style = visible;
-    slideClickCom === -2
-      ? (comButtonRight.style = disable)
-      : (comButtonRight.style = visible);
-  }
+  moveCommercial("leftCom");
 };
 
 for (let i = 0; i < dropButton.length; i++) {
@@ -72,16 +45,21 @@ for (let i = 0; i < dropButton.length; i++) {
 }
 
 let el = document.getElementById("residential__items");
+let elCom = document.getElementById("commercial__items");
 let x1 = 0;
 let move = 0;
 let moveLimit = 0;
 let direction = 0;
 
+let x1Com = 0;
+let moveCom = 0;
+let moveComLimit = 0;
+let directionCom = 0;
+
 let resPaginationCurrent = 0;
 let resPaginationColored = document.querySelectorAll(".residential__circle");
 
 let comPaginationCurrent = 0;
-let comPaginationPrev = 0;
 let comPaginationColored = document.querySelectorAll(".commercial__circle");
 
 el.addEventListener("touchstart", handleTouchStart, false);
@@ -125,7 +103,6 @@ function handleTouchEnd(event) {
 let moveCalc = 140;
 let countMoveRes = 0;
 let maxMoveRes = 0;
-let resPag = 0;
 if (window.innerWidth > 650) {
   maxMoveRes = 3 * moveCalc;
   resPaginationColored[4].style.display = "none";
@@ -157,21 +134,16 @@ function moveResidential(direction) {
     resSlide[i].style.transform = "translateX(" + countMoveRes + "px)";
     resSlide[i].style.transition = "0.5s";
   }
-  resPaginationCurrent = -countMoveRes / moveCalc + resPag;
+  resPaginationCurrent = -countMoveRes / moveCalc;
   resPaginationColored.forEach((element) => {
     element.classList.remove("filled");
   });
   resPaginationColored[resPaginationCurrent].classList.add("filled");
-  console.log(resPaginationCurrent);
 }
-
-let elCom = document.getElementById("commercial__items");
-let xCom = 0;
-let moveCom = 0;
-let moveComLimit = 0;
 
 elCom.addEventListener("touchstart", handleTouchStartCom, false);
 elCom.addEventListener("touchmove", handleTouchMoveCom, false);
+elCom.addEventListener("touchend", handleTouchEndCom, false);
 
 function handleTouchStartCom(eventCom) {
   let firstTouchCom = eventCom.touches[0];
@@ -182,29 +154,67 @@ function handleTouchMoveCom(eventCom) {
   if (!x1Com) {
     return false;
   }
-  if (window.screen.width > 420) {
-    moveComLimit = (comSlide.length - 2) * -120;
+  if (window.screen.width > 767) {
+    moveComLimit = (comSlide.length - 4) * -120;
+  } else if (window.screen.width < 450) {
+    moveComLimit = (comSlide.length - 3) * -120;
   } else {
     moveComLimit = (comSlide.length - 1) * -120;
   }
-
   let x2Com = eventCom.touches[0].clientX;
-  let xDiffCom = x2Com - x1Com + moveCom;
-  if (xDiffCom > 0) {
-    moveCom = 0;
-  } else if (xDiffCom < moveComLimit) {
-    moveCom = moveComLimit;
-  } else moveCom = xDiffCom;
-  let comPagination = Math.round(xDiffCom / 120);
-  comPaginationCurrent = comPaginationPrev - comPagination;
-  comPaginationColored[comPaginationCurrent].classList.add("fill");
-
-  for (let i = 0; i < comSlide.length; i++) {
-    comSlide[i].style = "transform: translate(" + moveCom + "px);";
-    if (comPaginationColored[i].classList.contains("fill")) {
-      comPaginationColored[i].classList.remove("fill");
+  let xDiffCom = x2Com - x1Com;
+  if (Math.abs(xDiffCom) > 20) {
+    if (xDiffCom > 0) {
+      directionCom = "rightCom";
+    } else if (xDiffCom < 0) {
+      directionCom = "leftCom";
     }
-    comPaginationColored[comPaginationCurrent].classList.add("fill");
+    handleTouchEndCom;
   }
 }
-comPaginationPrev = comPaginationCurrent;
+
+function handleTouchEndCom(eventCom) {
+  moveCommercial(directionCom);
+  xDiffCom = null;
+  directionCom = null;
+}
+let moveCalcCom = 140;
+let countMoveCom = 0;
+let maxMoveCom = 0;
+if (window.innerWidth > 650) {
+  maxMoveCom = 2 * moveCalcCom;
+  console.log(maxMoveCom);
+  comPaginationColored[3].style.display = "none";
+  comPaginationColored[4].style.display = "none";
+} else if (window.innerWidth < 650 && window.innerWidth > 493) {
+  comPaginationColored[4].style.display = "none";
+  maxMoveCom = 3 * moveCalcCom;
+} else {
+  maxMoveCom = 4 * moveCalcCom;
+}
+comPaginationColored[resPaginationCurrent].classList.add("filled");
+
+function moveCommercial(directionCom) {
+  if (directionCom == "leftCom" && countMoveCom > -maxMoveCom) {
+    countMoveCom -= moveCalcCom;
+    comButtonLeft.style = visible;
+    countMoveCom === -maxMoveCom
+      ? (comButtonRight.style = disable)
+      : (comButtonRight.style = visible);
+  } else if (directionCom == "rightCom" && countMoveCom < 0) {
+    countMoveCom += moveCalcCom;
+    comButtonRight.style = visible;
+    countMoveCom === 0
+      ? (comButtonLeft.style = disable)
+      : (comButtonLeft.style = visible);
+  }
+  for (let i = 0; i < comSlide.length; i++) {
+    comSlide[i].style.transform = "translateX(" + countMoveCom + "px)";
+    comSlide[i].style.transition = "0.5s";
+  }
+  comPaginationCurrent = -countMoveCom / moveCalcCom;
+  comPaginationColored.forEach((element) => {
+    element.classList.remove("filled");
+  });
+  comPaginationColored[comPaginationCurrent].classList.add("filled");
+}
