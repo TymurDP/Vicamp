@@ -5,10 +5,20 @@ if (widthDevice < 641) {
   let item = document.getElementById("items");
   let x1 = 0;
   let maxMoveRes = 0;
+  let moveCalc = 140;
+  let countMoveRes = 0;
+  let quantity =
+    ((resSlide.length + 1) * moveCalc - widthDevice * 0.9) / moveCalc;
+  quantity = Math.ceil(quantity);
 
   let resPaginationCurrent = 0;
   let resPaginationColored = document.querySelectorAll(".circle");
   resPaginationColored[resPaginationCurrent].classList.add("fill");
+
+  if (widthDevice > 500) {
+    resPaginationColored[5].style.display = "none";
+    quantity -= 1;
+  }
 
   item.addEventListener("touchstart", handleTouchStart, false);
   item.addEventListener("touchmove", handleTouchMove, false);
@@ -31,7 +41,6 @@ if (widthDevice < 641) {
       } else if (xDiff < 0) {
         direction = "left";
       }
-      console.log(direction);
       handleTouchEnd;
     }
   }
@@ -41,16 +50,8 @@ if (widthDevice < 641) {
     xDiff = null;
     direction = null;
   }
-  let moveCalc = 140;
-  let countMoveRes = 0;
-  let quantity = (resSlide.length * moveCalc - widthDevice * 0.9) / moveCalc;
-  quantity = Math.ceil(quantity);
-  maxMoveRes = quantity * moveCalc;
-  // if (widthDevice > 490) {
-  //   maxMoveRes = quantity * moveCalc;
-  // } else maxMoveRes = resSlide.length * moveCalc - widthDevice;
 
-  console.log(maxMoveRes);
+  maxMoveRes = quantity * moveCalc;
   resPaginationColored[resPaginationCurrent].classList.add("fill");
 
   function moveResidential(direction) {
@@ -59,10 +60,11 @@ if (widthDevice < 641) {
     } else if (direction == "right" && countMoveRes < 0) {
       countMoveRes += moveCalc;
     }
-    for (let i = 0; i < resSlide.length; i++) {
-      resSlide[i].style.transform = "translateX(" + countMoveRes + "px)";
-      resSlide[i].style.transition = "0.5s";
-    }
+
+    resSlide.forEach((element) => {
+      element.style.transform = "translateX(" + countMoveRes + "px)";
+    });
+
     resPaginationCurrent = -countMoveRes / moveCalc;
     resPaginationColored.forEach((element) => {
       element.classList.remove("fill");
