@@ -57,9 +57,12 @@ function swipeEnd(eventSwipe) {
 
 if (window.innerWidth > 1281) {
   adapt = 3;
-} else if (window.innerWidth <= 1280) {
+  circles[11].style.display = "none";
+  circles[10].style.display = "none";
+} else if (window.innerWidth <= 1280 && window.innerWidth >= 768) {
   adapt = 2;
-} else if (window.innerWidth < 768) {
+  circles[11].style.display = "none";
+} else {
   adapt = 1;
 }
 const maxMove = -(item.length - adapt) * widthItem;
