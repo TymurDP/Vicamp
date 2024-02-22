@@ -15,9 +15,14 @@ if (widthDevice < 641) {
   let resPaginationColored = document.querySelectorAll(".circle");
   resPaginationColored[resPaginationCurrent].classList.add("fill");
 
-  if (widthDevice > 500) {
+  if (widthDevice > 500 && resSlide.length === 7) {
     resPaginationColored[5].style.display = "none";
-    quantity -= 1;
+    quantity--;
+  }
+
+  if (widthDevice > 500 && resSlide.length === 6) {
+    resPaginationColored[4].style.display = "none";
+    quantity--;
   }
 
   item.addEventListener("touchstart", handleTouchStart, false);
