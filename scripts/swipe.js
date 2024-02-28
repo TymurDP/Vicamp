@@ -49,6 +49,7 @@ function handleTouchMoveSwipe(eventSwipe) {
     swipeEnd;
   }
 }
+
 function swipeEnd(eventSwipe) {
   moveSlide(rotation);
   xDiffSwipe = null;

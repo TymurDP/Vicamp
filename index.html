@@ -791,24 +791,24 @@
                                     src="./images/google.png" alt="Google Reviews"></a>
                         </div>
                     </div>
-                    <div class="form" id="contact-form">
-                        <p class="form-title">Book free estimate</p>
-                        <form action="post.php" method="post" name="form" autocomplete="off">
+                    <div class="form">
+                        <p class=" form-title">Book free estimate</p>
+                        <form action="#" id="contact-form" class="contact-form" name="form" autocomplete="off">
                             <div class="form-inputs">
                                 <div class="form-input">
                                     <input type="text" name="user-name" id="user-name" placeholder="Your name"
-                                        required />
+                                        class="_req" />
                                 </div>
-                                <div class="form-input">
+                                <div class="form-input ">
                                     <input type="tel" name="user-tel" id="user-tel" placeholder="Your phone"
-                                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" title="+1" />
+                                        class="tel _req" />
                                 </div>
                                 <div class="form-input">
                                     <input type="text" name="user-addres" id="user-addres"
                                         placeholder="Address (optional)" />
                                 </div>
                                 <div class="form-message">
-                                    <textarea name="user-message" id="user-message" class="form-message"
+                                    <textarea name="user-message" id="form-message" class="form-message _req"
                                         placeholder="Type your text here"></textarea>
                                 </div>
                                 <button class="form-button" type="submit">Book Estimate</button>
@@ -851,6 +851,7 @@
     <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
     <script src="./scripts/script.js"></script>
     <script src="./scripts/swipe.js"></script>
+    <script src="./scripts/form.js"></script>
 </body>
 
 </html>
