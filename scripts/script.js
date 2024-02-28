@@ -12,7 +12,8 @@ let visible = "opacity: 1;cursor: pointer";
 resButtonLeft.style = disable;
 comButtonLeft.style = disable;
 
-let dropButton = document.querySelectorAll(".dropButton");
+let dropBtn = document.querySelectorAll(".dropButton");
+let dropButton = document.querySelectorAll(".questions__item");
 let dropText = document.querySelectorAll(".dropText");
 
 resButtonLeft.onclick = () => {
@@ -36,10 +37,10 @@ for (let i = 0; i < dropButton.length; i++) {
   dropButton[i].onclick = () => {
     if (dropText[i].style.display == "none") {
       dropText[i].style.display = "block";
-      dropButton[i].style = "transform: rotate(180deg);transition: 0.3s;";
+      dropBtn[i].style = "transform: rotate(180deg);transition: 0.3s;";
     } else {
       dropText[i].style.display = "none";
-      dropButton[i].style = "transform: rotate(0deg);transition: 0.3s;";
+      dropBtn[i].style = "transform: rotate(0deg);transition: 0.3s;";
     }
   };
 }

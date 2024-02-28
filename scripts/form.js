@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
         method: "POST",
         body: formData,
       });
-      console.log(formData);
       if (response.ok) {
         console.log("Sent");
         let result = await response.json();
